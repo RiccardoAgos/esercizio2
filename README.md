@@ -14,5 +14,5 @@ ad un server Web qualsiasi (ad esempio usando l'URL `http://example.org`).
 
 La risposta va stampata integralmente su `stdout`.
 
-Il codice d'esempio utilizza WinSock2 per Win32, ma è chiaramente possibile sfruttare le socket su altre piattaforme.
+Il codice d'esempio utilizza WinSock2 per Win32 (che può essere compilato usando TinyCC, seguendo le [istruzioni dell'esercitazione in laboratorio](https://github.com/DigiPlatMOOC/pdgt-esercitazione-interfacce-base)), ma è chiaramente possibile sfruttare le socket su altre piattaforme.
 Per Unix/Linux si può utilizzare il codice in `socket-unix.c` come base di partenza.
