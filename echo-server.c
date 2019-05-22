@@ -45,11 +45,13 @@ int main() {
         printf("Read %d bytes... ", client_message_size);
 
         int sent = send(incoming, client_message, client_message_size, 0);
-        socket_close_send(incoming);
+        socket_close(incoming);
         printf("and %d bytes sent back.\n", sent);
     }
 
-    if(socket_quit(socket) != 0) {
+    socket_close(socket);
+
+    if(socket_quit() != 0) {
         fprintf(stderr, "Socket finalization failed\n");
         return 1;
     }

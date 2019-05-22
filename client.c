@@ -37,7 +37,9 @@ int main() {
     int read_size = socket_read_all(socket, output, 256);
     printf("%s\n", output);
 
-    if(socket_quit(socket) != 0) {
+    socket_close(socket);
+
+    if(socket_quit() != 0) {
         fprintf(stderr, "Socket finalization failed\n");
         return 1;
     }

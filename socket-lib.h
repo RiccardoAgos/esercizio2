@@ -33,11 +33,8 @@ int socket_init() {
     #endif
 }
 
-int socket_quit(SOCKET_T socket) {
+int socket_quit() {
     #ifdef _WIN32
-        if(closesocket(socket) == SOCKET_ERROR) {
-            return -1;
-        }
         return WSACleanup();
     #else
         return 0;
@@ -203,6 +200,17 @@ void socket_close_receive(SOCKET_T socket) {
         shutdown(socket, SD_RECEIVE);
     #else
         shutdown(socket, SHUT_RD);
+    #endif
+}
+
+int socket_close(SOCKET_T socket) {
+    #ifdef _WIN32
+        if(closesocket(socket) == SOCKET_ERROR) {
+            return -1;
+        }
+        return 0;
+    #else
+        return close(socket);
     #endif
 }
 
