@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include "socket-lib.h"
 
-#define HOST "localhost"
-#define PORT 1234
+#define HOST "www.example.org"
+#define PORT 80
 
 int main() {
     if(socket_init() != 0) {
@@ -24,17 +24,15 @@ int main() {
     printf("Connected!\n");
 
     // Read user input
-    char input[256];
-    memset(input, 0, sizeof(char) * 256);
-    printf("Input: ");
-    scanf("%s", input);
-    int sent = send(socket, input, strlen(input) * sizeof(char), 0);
+    char input[1024] =
+        "GET / HTTP/1.0\r\n"
+        "Host: www.example.org\r\n\r\n";
+
+    send(socket, input, strlen(input) * sizeof(char), 0);
     socket_close_send(socket);
 
-    printf("%d bytes sent\n", sent);
-
-    char output[256];
-    int read_size = socket_read_all(socket, output, 256);
+    char output[1024];
+    int read_size = socket_read_all(socket, output, 1024);
     printf("%s\n", output);
     socket_close(socket);
 

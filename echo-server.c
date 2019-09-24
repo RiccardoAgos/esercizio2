@@ -44,6 +44,15 @@ int main() {
         socket_close_receive(incoming);
         printf("Read %d bytes... ", client_message_size);
 
+        for(int i=0; i < client_message_size; i++)
+        {
+            if(i%2 == 0){
+                client_message[i] = toupper(client_message[i]);
+
+            }
+        }
+
+
         int sent = send(incoming, client_message, client_message_size, 0);
         socket_close(incoming);
         printf("and %d bytes sent back.\n", sent);
